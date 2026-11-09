@@ -86,20 +86,25 @@ export default function SiteHeader() {
                 </nav>
 
                 {/* Right controls: Shopping Bag */}
-                <div className="flex items-center gap-2">
+                <div className="relative inline-flex items-center">
                     <button
                         type="button"
                         onClick={openCart}
                         aria-label={`Open shopping bag, ${count} items`}
-                        className="glass-btn relative grid h-10 w-10 place-items-center rounded-full text-foreground transition-all duration-300 hover:border-primary/50"
+                        className="glass-btn !overflow-visible relative grid h-10 w-10 place-items-center rounded-full text-foreground transition-all duration-300 hover:border-primary/50"
                     >
                         <ShoppingBag className="h-4 w-4" strokeWidth={1.6} />
-                        {count > 0 && (
-                            <span className="absolute -right-1.5 -top-1.5 grid h-5 min-w-5 place-items-center rounded-full bg-rose-600 px-1 text-[11px] font-bold text-white shadow-md ring-2 ring-background transition-transform duration-200">
-                                {count}
-                            </span>
-                        )}
                     </button>
+                    {count > 0 && (
+                        <span
+                            onClick={openCart}
+                            role="status"
+                            aria-label={`${count} items in bag`}
+                            className="absolute -right-1.5 -top-1.5 z-30 flex h-5 min-w-5 cursor-pointer items-center justify-center rounded-full bg-rose-600 px-1 text-[11px] font-bold text-white shadow-lg ring-2 ring-background transition-transform duration-200 hover:scale-110"
+                        >
+                            {count}
+                        </span>
+                    )}
                 </div>
             </div>
 

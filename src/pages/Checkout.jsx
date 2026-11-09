@@ -483,8 +483,8 @@ export default function Checkout() {
                                 {paymentState === 'cancelled'
                                     ? 'Payment Cancelled on Phone'
                                     : paymentState === 'timeout'
-                                    ? 'Payment Request Timed Out'
-                                    : 'Payment Could Not Be Completed'}
+                                        ? 'Payment Request Timed Out'
+                                        : 'Payment Could Not Be Completed'}
                             </h1>
                             <p className="mt-2 text-xs leading-relaxed text-foreground/65">
                                 {paymentResult?.result_desc ||
@@ -571,11 +571,10 @@ export default function Checkout() {
                                     <button
                                         type="button"
                                         onClick={() => setPaymentMethod('stk_push')}
-                                        className={`flex flex-col items-center justify-center p-3 rounded-xl border transition-all text-xs ${
-                                            paymentMethod === 'stk_push'
+                                        className={`flex flex-col items-center justify-center p-3 rounded-xl border transition-all text-xs ${paymentMethod === 'stk_push'
                                                 ? 'border-emerald-500/50 bg-emerald-500/10 text-emerald-300'
                                                 : 'border-white/10 bg-white/5 text-foreground/60 hover:text-foreground'
-                                        }`}
+                                            }`}
                                     >
                                         <Smartphone className="h-5 w-5 mb-1" />
                                         <span className="font-medium">M-Pesa STK Push</span>
@@ -585,11 +584,10 @@ export default function Checkout() {
                                     <button
                                         type="button"
                                         onClick={() => setPaymentMethod('qr_code')}
-                                        className={`flex flex-col items-center justify-center p-3 rounded-xl border transition-all text-xs ${
-                                            paymentMethod === 'qr_code'
+                                        className={`flex flex-col items-center justify-center p-3 rounded-xl border transition-all text-xs ${paymentMethod === 'qr_code'
                                                 ? 'border-emerald-500/50 bg-emerald-500/10 text-emerald-300'
                                                 : 'border-white/10 bg-white/5 text-foreground/60 hover:text-foreground'
-                                        }`}
+                                            }`}
                                     >
                                         <QrCode className="h-5 w-5 mb-1" />
                                         <span className="font-medium">Dynamic QR Code</span>

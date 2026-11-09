@@ -126,3 +126,4 @@ MPESA_SIMULATE=True
 The project includes `netlify.toml` and `public/_redirects` configured for single-page application routing.
 - **Build command**: `npm run build`
 - **Publish directory**: `dist`
+
