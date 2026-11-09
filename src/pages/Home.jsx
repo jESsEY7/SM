@@ -8,7 +8,6 @@ import Catalog from '@/components/home/Catalog';
 import CatalogSkeleton from '@/components/home/CatalogSkeleton';
 import ShadeStudio from '@/components/home/ShadeStudio';
 import FormulaSection from '@/components/home/FormulaSection';
-import ThemeSwitcher from '@/components/layout/ThemeSwitcher';
 import { fetchProducts } from '@/lib/catalog';
 import { CLINICAL_PRODUCTS } from '@/data/clinicalProducts';
 
@@ -28,8 +27,6 @@ export default function Home() {
             </main>
             <SiteFooter />
             <CartDrawer />
-            {/* Floating theme color switcher with smooth hover on scroll */}
-            <ThemeSwitcher floating />
         </div>
     );
 }

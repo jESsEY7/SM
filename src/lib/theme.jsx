@@ -27,7 +27,17 @@ export function ThemeProvider({ children }) {
         }
     }, [theme]);
 
-    return <ThemeContext.Provider value={{ theme, setTheme, themes: THEMES }}>{children}</ThemeContext.Provider>;
+    const isDark = theme !== 'linen';
+
+    const toggleDarkMode = () => {
+        setTheme((prev) => (prev === 'linen' ? 'sylvia' : 'linen'));
+    };
+
+    return (
+        <ThemeContext.Provider value={{ theme, setTheme, themes: THEMES, isDark, toggleDarkMode }}>
+            {children}
+        </ThemeContext.Provider>
+    );
 }
 
 export function useTheme() {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { ShoppingBag, Menu, X, ArrowUpRight, Sparkles } from 'lucide-react';
+import { ShoppingBag, Menu, X, ArrowUpRight, Sparkles, Moon } from 'lucide-react';
 import { useCart } from '@/lib/cart';
+import { useTheme } from '@/lib/theme';
 import SylviaBrandLogo from '@/components/ui/SylviaBrandLogo';
 
 const LINKS = [
@@ -12,6 +13,7 @@ const LINKS = [
 
 export default function SiteHeader() {
     const { count, openCart } = useCart();
+    const { isDark, toggleDarkMode } = useTheme();
     const [scrolled, setScrolled] = useState(false);
     const [visible, setVisible] = useState(true);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -85,26 +87,47 @@ export default function SiteHeader() {
                     ))}
                 </nav>
 
-                {/* Right controls: Shopping Bag */}
-                <div className="relative inline-flex items-center">
+                {/* Right controls: Dark Mode Crescent Moon + Shopping Bag */}
+                <div className="flex items-center gap-2">
+                    {/* Crescent Moon Dark Mode Toggle */}
                     <button
                         type="button"
-                        onClick={openCart}
-                        aria-label={`Open shopping bag, ${count} items`}
-                        className="glass-btn !overflow-visible relative grid h-10 w-10 place-items-center rounded-full text-foreground transition-all duration-300 hover:border-primary/50"
+                        onClick={toggleDarkMode}
+                        aria-label={isDark ? 'Switch to day mode' : 'Switch to dark mode'}
+                        title={isDark ? 'Day Mode (Alabaster Cream)' : 'Dark Mode (Obsidian Noir)'}
+                        className="glass-btn relative grid h-10 w-10 place-items-center rounded-full text-foreground transition-all duration-300 hover:border-primary/50 group"
                     >
-                        <ShoppingBag className="h-4 w-4" strokeWidth={1.6} />
+                        <Moon
+                            className={`h-4 w-4 transition-all duration-500 ${
+                                isDark
+                                    ? 'text-primary fill-primary/30 -rotate-12 drop-shadow-[0_0_8px_var(--accent-glow)] scale-110'
+                                    : 'text-foreground/75 hover:text-foreground rotate-0 scale-100'
+                            }`}
+                            strokeWidth={1.8}
+                        />
                     </button>
-                    {count > 0 && (
-                        <span
+
+                    {/* Shopping Bag */}
+                    <div className="relative inline-flex items-center">
+                        <button
+                            type="button"
                             onClick={openCart}
-                            role="status"
-                            aria-label={`${count} items in bag`}
-                            className="absolute -right-1.5 -top-1.5 z-30 flex h-5 min-w-5 cursor-pointer items-center justify-center rounded-full bg-rose-600 px-1 text-[11px] font-bold text-white shadow-lg ring-2 ring-background transition-transform duration-200 hover:scale-110"
+                            aria-label={`Open shopping bag, ${count} items`}
+                            className="glass-btn !overflow-visible relative grid h-10 w-10 place-items-center rounded-full text-foreground transition-all duration-300 hover:border-primary/50"
                         >
-                            {count}
-                        </span>
-                    )}
+                            <ShoppingBag className="h-4 w-4" strokeWidth={1.6} />
+                        </button>
+                        {count > 0 && (
+                            <span
+                                onClick={openCart}
+                                role="status"
+                                aria-label={`${count} items in bag`}
+                                className="absolute -right-1.5 -top-1.5 z-30 flex h-5 min-w-5 cursor-pointer items-center justify-center rounded-full bg-rose-600 px-1 text-[11px] font-bold text-white shadow-lg ring-2 ring-background transition-transform duration-200 hover:scale-110"
+                            >
+                                {count}
+                            </span>
+                        )}
+                    </div>
                 </div>
             </div>
 
@@ -134,6 +157,20 @@ export default function SiteHeader() {
                                     <ArrowUpRight className="h-3.5 w-3.5 text-foreground/40" />
                                 </a>
                             ))}
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    toggleDarkMode();
+                                    setMobileMenuOpen(false);
+                                }}
+                                className="flex items-center justify-between py-3.5 text-xs uppercase tracking-[0.2em] text-foreground/80 font-medium transition-colors hover:text-primary text-left"
+                            >
+                                <span className="flex items-center gap-2.5">
+                                    <Moon className={`h-4 w-4 ${isDark ? 'text-primary fill-primary/30' : 'text-foreground/60'}`} />
+                                    <span>{isDark ? 'Day Mode (Linen)' : 'Dark Mode (Noir)'}</span>
+                                </span>
+                                <span className="label-mono text-[9px] text-primary">{isDark ? 'Day' : 'Dark'}</span>
+                            </button>
                         </nav>
 
                         <div className="mt-4 pt-3 border-t border-border/40 flex items-center justify-between">
