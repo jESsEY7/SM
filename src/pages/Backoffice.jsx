@@ -25,7 +25,7 @@ function money(n) {
     return `Ksh ${Math.round(Number(n || 0) * 130).toLocaleString()}`;
 }
 
-function StatCard({ icon: Icon, label, value, hint }) {
+function StatCard({ icon: Icon, label, value, hint = '' }) {
     return (
         <div className="glass-panel rounded-2xl p-5">
             <div className="flex items-center gap-2 text-foreground/55">

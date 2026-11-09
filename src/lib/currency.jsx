@@ -9,9 +9,9 @@ export const CURRENCIES = [
 
 const CurrencyContext = createContext({
     currency: 'KES',
-    setCurrency: () => {},
-    formatPrice: () => '',
-    convert: () => 0,
+    setCurrency: (code) => {},
+    formatPrice: (amountInUSD) => '',
+    convert: (amountInUSD) => 0,
     currentCurrency: CURRENCIES[0],
     currencies: CURRENCIES,
 });

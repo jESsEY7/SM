@@ -31,11 +31,13 @@ export default function ShadeStudio({ products = [] }) {
     const scanTimeoutRef = useRef(null);
     const imageContainerRef = useRef(null);
 
+    const safeProducts = Array.isArray(products) ? products : [];
+
     // Compute top matches based on depth & undertone
     const matches = useMemo(() => {
-        if (!products || products.length === 0) return [];
+        if (!safeProducts || safeProducts.length === 0) return [];
         const want = family(undertone);
-        return [...products]
+        return [...safeProducts]
             .map((p) => ({
                 product: p,
                 score: Math.abs(p.depth - depth) * 1.2 + (p.undertone === want ? 0 : 2.2),

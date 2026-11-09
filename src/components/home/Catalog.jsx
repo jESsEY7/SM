@@ -7,15 +7,16 @@ import CurrencySelector from '@/components/ui/CurrencySelector';
 export default function Catalog({ products }) {
     const [category, setCategory] = useState('all');
     const [undertone, setUndertone] = useState('all');
+    const safeProducts = Array.isArray(products) ? products : [];
 
     const visible = useMemo(
         () =>
-            products.filter(
+            safeProducts.filter(
                 (p) =>
                     (category === 'all' || p.category === category) &&
                     (undertone === 'all' || p.undertone === undertone)
             ),
-        [products, category, undertone]
+        [safeProducts, category, undertone]
     );
 
     return (
