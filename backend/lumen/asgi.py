@@ -1,0 +1,12 @@
+"""
+ASGI config for lumen project.
+"""
+
+import os
+
+from django.core.asgi import get_asgi_application
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'lumen.settings')
+
+application = get_asgi_application()
+

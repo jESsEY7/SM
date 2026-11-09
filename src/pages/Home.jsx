@@ -1,0 +1,34 @@
+import { useQuery } from '@tanstack/react-query';
+import SiteHeader from '@/components/layout/SiteHeader';
+import SiteFooter from '@/components/layout/SiteFooter';
+import CartDrawer from '@/components/cart/CartDrawer';
+import Hero from '@/components/home/Hero';
+import ClinicalGallery from '@/components/home/ClinicalGallery';
+import Catalog from '@/components/home/Catalog';
+import CatalogSkeleton from '@/components/home/CatalogSkeleton';
+import ShadeStudio from '@/components/home/ShadeStudio';
+import FormulaSection from '@/components/home/FormulaSection';
+import ThemeSwitcher from '@/components/layout/ThemeSwitcher';
+import { fetchProducts } from '@/lib/catalog';
+
+export default function Home() {
+    const { data: products, isLoading } = useQuery({ queryKey: ['products'], queryFn: fetchProducts });
+    const list = products ?? [];
+
+    return (
+        <div className="relative min-h-screen overflow-x-hidden bg-background text-foreground transition-colors duration-500">
+            <SiteHeader />
+            <main>
+                <Hero />
+                <ClinicalGallery />
+                {isLoading ? <CatalogSkeleton /> : <Catalog products={list} />}
+                {!isLoading && list.length > 0 && <ShadeStudio products={list} />}
+                <FormulaSection />
+            </main>
+            <SiteFooter />
+            <CartDrawer />
+            {/* Floating theme color switcher with smooth hover on scroll */}
+            <ThemeSwitcher floating />
+        </div>
+    );
+}
