@@ -17,7 +17,7 @@ export default function Home() {
     const list = Array.isArray(products) && products.length > 0 ? products : CLINICAL_PRODUCTS;
 
     return (
-        <div className="relative min-h-screen overflow-x-hidden bg-background text-foreground transition-colors duration-500">
+        <div className="relative min-h-screen overflow-x-hidden bg-transparent text-foreground transition-colors duration-500">
             <SiteHeader />
             <main>
                 <Hero />

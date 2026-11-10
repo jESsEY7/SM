@@ -3,7 +3,6 @@ import { ShoppingBag, Menu, X, ArrowUpRight, Sparkles, Moon, Search } from 'luci
 import { useCart } from '@/lib/cart';
 import { useTheme } from '@/lib/theme';
 import SylviaBrandLogo from '@/components/ui/SylviaBrandLogo';
-import CurrencySelector from '@/components/ui/CurrencySelector';
 
 const LINKS = [
     { href: '#top', label: 'Brand Film' },
@@ -139,9 +138,6 @@ export default function SiteHeader() {
                             <Search className="h-4 w-4" strokeWidth={1.7} />
                         </button>
                     )}
-
-                    {/* Currency Selector (Ksh, USD, GBP, EUR) */}
-                    <CurrencySelector compact />
 
                     {/* Crescent Moon Dark Mode Toggle */}
                     <button
