@@ -6,6 +6,7 @@ import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import ScrollToTop from './components/ScrollToTop';
 import { ThemeProvider } from '@/lib/theme';
+import AmbientBackground from '@/components/site/AmbientBackground';
 import { CartProvider } from '@/lib/cart';
 import { CurrencyProvider } from '@/lib/currency';
 import Home from '@/pages/Home';
@@ -49,6 +50,7 @@ function App() {
     return (
         <AuthProvider>
             <ThemeProvider>
+                <AmbientBackground />
                 <CurrencyProvider>
                     <CartProvider>
                         <QueryClientProvider client={queryClientInstance}>

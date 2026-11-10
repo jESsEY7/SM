@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 
 export const THEMES = [
     { id: 'linen', name: 'Alabaster Cream (Clinic)', swatch: '#9E8265', desc: 'Warm Ivory Linen' },
-    { id: 'sylvia', name: 'Obsidian Bronze', swatch: '#C5A880', desc: 'Deep Noir & Gold' },
+    { id: 'sylvia', name: 'Obsidian Noir', swatch: '#8B5CF6', desc: 'Deep Charcoal Studio' },
     { id: 'cosmic', name: 'Cosmic Violet', swatch: '#8B5CF6', desc: 'Clinical Glow' },
     { id: 'rose', name: 'Sunset Rose', swatch: '#F43F5E', desc: 'Radiant Blush' },
 ];
