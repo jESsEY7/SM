@@ -8,6 +8,7 @@ import Catalog from '@/components/home/Catalog';
 import CatalogSkeleton from '@/components/home/CatalogSkeleton';
 import ShadeStudio from '@/components/home/ShadeStudio';
 import FormulaSection from '@/components/home/FormulaSection';
+import UgcSection from '@/components/home/UgcSection';
 import { fetchProducts } from '@/lib/catalog';
 import { CLINICAL_PRODUCTS } from '@/data/clinicalProducts';
 
@@ -23,6 +24,7 @@ export default function Home() {
                 <ClinicalGallery />
                 {isLoading ? <CatalogSkeleton /> : <Catalog products={list} />}
                 {!isLoading && list.length > 0 && <ShadeStudio products={list} />}
+                <UgcSection />
                 <FormulaSection />
             </main>
             <SiteFooter />

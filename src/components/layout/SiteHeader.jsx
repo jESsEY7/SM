@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
-import { ShoppingBag, Menu, X, ArrowUpRight, Sparkles, Moon } from 'lucide-react';
+import { ShoppingBag, Menu, X, ArrowUpRight, Sparkles, Moon, Search } from 'lucide-react';
 import { useCart } from '@/lib/cart';
 import { useTheme } from '@/lib/theme';
 import SylviaBrandLogo from '@/components/ui/SylviaBrandLogo';
+import CurrencySelector from '@/components/ui/CurrencySelector';
 
 const LINKS = [
-    { href: '#clinical-services', label: 'Treatments' },
+    { href: '#top', label: 'Brand Film' },
     { href: '#catalog', label: 'Formulas' },
     { href: '#shade-studio', label: 'Clinical Studio' },
+    { href: '#clinical-social-proof', label: 'Reviews & UGC' },
     { href: '#formula', label: 'Science' },
 ];
 
@@ -17,6 +19,19 @@ export default function SiteHeader() {
     const [scrolled, setScrolled] = useState(false);
     const [visible, setVisible] = useState(true);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [searchOpen, setSearchOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
+
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        if (searchQuery.trim()) {
+            const catalogEl = document.getElementById('catalog');
+            if (catalogEl) {
+                catalogEl.scrollIntoView({ behavior: 'smooth' });
+            }
+            setSearchOpen(false);
+        }
+    };
 
     useEffect(() => {
         let lastScrollY = window.scrollY;
@@ -87,8 +102,47 @@ export default function SiteHeader() {
                     ))}
                 </nav>
 
-                {/* Right controls: Dark Mode Crescent Moon + Shopping Bag */}
+                {/* Right controls: Search + Currency Selector + Dark Mode Crescent Moon + Shopping Bag */}
                 <div className="flex items-center gap-2">
+                    {/* Expandable Quick Formula Search */}
+                    {searchOpen ? (
+                        <form
+                            onSubmit={handleSearchSubmit}
+                            className="flex items-center rounded-full border border-primary/50 bg-background/95 px-3 py-1 shadow-lg animate-in fade-in duration-200"
+                        >
+                            <Search className="h-3.5 w-3.5 text-primary mr-2 shrink-0" />
+                            <input
+                                type="text"
+                                autoFocus
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                placeholder="Search formulas..."
+                                className="w-28 sm:w-40 bg-transparent text-xs text-foreground outline-none font-mono placeholder:text-foreground/40"
+                            />
+                            <button
+                                type="button"
+                                onClick={() => setSearchOpen(false)}
+                                className="text-foreground/50 hover:text-foreground ml-1"
+                                aria-label="Close search"
+                            >
+                                <X className="h-3 w-3" />
+                            </button>
+                        </form>
+                    ) : (
+                        <button
+                            type="button"
+                            onClick={() => setSearchOpen(true)}
+                            aria-label="Search clinical formulas"
+                            title="Search formulas"
+                            className="glass-btn hidden sm:grid h-10 w-10 place-items-center rounded-full text-foreground/80 hover:text-foreground transition-all hover:border-primary/50"
+                        >
+                            <Search className="h-4 w-4" strokeWidth={1.7} />
+                        </button>
+                    )}
+
+                    {/* Currency Selector (Ksh, USD, GBP, EUR) */}
+                    <CurrencySelector compact />
+
                     {/* Crescent Moon Dark Mode Toggle */}
                     <button
                         type="button"
