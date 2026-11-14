@@ -32,7 +32,7 @@ const FEATURED_PRODUCTS = [
         rating: 4.9,
         reviewsCount: 142,
         finish: 'Luminous Second-Skin Veil',
-        badge: 'Flagship Formulation',
+        badge: 'NEW',
         shades: [
             {
                 name: 'Shade 08 Deep Cocoa',
@@ -103,31 +103,6 @@ const FEATURED_PRODUCTS = [
         ],
     },
     {
-        id: 10,
-        slug: 'sylvia-cellular-elixir',
-        name: 'Botanical Recovery Elixir',
-        category: 'Cellular Lipid Serum',
-        price: 62.0,
-        rating: 5.0,
-        reviewsCount: 76,
-        finish: 'High-Potency Active Lipids',
-        badge: 'Clinical Rx',
-        shades: [
-            {
-                name: 'Pure Golden Radiance',
-                hex: '#D4AF37',
-                undertone: 'Universal Nutrient Radiance',
-                image: '/images/products/catalog-9.jpeg',
-                altImage: '/images/showcase/WhatsApp_Image_2026-11-10_at_03.17.49.jpeg',
-            },
-        ],
-        notes: [
-            '100% active botanical lipid infusion',
-            'Natural Bakuchiol cellular collagen support',
-            'Antioxidant CoQ10 & squalane shield',
-        ],
-    },
-    {
         id: 9,
         slug: 'sylvia-flush-sunstone',
         name: 'Radiant Cheek Flush',
@@ -170,6 +145,9 @@ export default function Hero() {
     const [activeAngle, setActiveAngle] = useState('main'); // 'main' | 'alt'
     const [justAdded, setJustAdded] = useState(false);
 
+    // Shade hover tooltip state
+    const [hoveredShadeIdx, setHoveredShadeIdx] = useState(null);
+
     // Hotspot drawer modal state
     const [drawerProduct, setDrawerProduct] = useState(null);
     const [drawerOpen, setDrawerOpen] = useState(false);
@@ -188,7 +166,7 @@ export default function Hero() {
             videoRef.current.pause();
             setIsPlaying(false);
         } else {
-            videoRef.current.play().catch(() => {});
+            videoRef.current.play().catch(() => { });
             setIsPlaying(true);
         }
     };
@@ -243,12 +221,12 @@ export default function Hero() {
             <div className="mx-auto w-full max-w-7xl">
                 {/* 1. Header Eyebrow & Brand Headline */}
                 <div className="max-w-3xl mb-8 sm:mb-12">
-                    <div className="inline-flex items-center gap-2.5 rounded-full border border-border/50 bg-card/75 px-4 py-1.5 shadow-sm backdrop-blur-md mb-4">
+                    {/* <div className="inline-flex items-center gap-2.5 rounded-full border border-border/50 bg-card/75 px-4 py-1.5 shadow-sm backdrop-blur-md mb-4">
                         <SylviaMonogram className="h-4 w-3 text-primary" />
                         <span className="font-mono text-[11px] uppercase tracking-[0.24em] text-foreground/80 font-medium">
                             Clinical Science · Refined Radiance
                         </span>
-                    </div>
+                    </div> */}
 
                     <h1 className="font-display text-[clamp(2.5rem,6.5vw,5.5rem)] font-normal uppercase leading-[0.92] tracking-[-0.03em] text-foreground">
                         {WORDS.map((word) => (
@@ -263,8 +241,7 @@ export default function Hero() {
                     </h1>
 
                     <p className="mt-4 text-sm sm:text-base text-foreground/75 max-w-xl font-light leading-relaxed">
-                        Physician-grade cosmetic formulations and precision dermatological therapies. Touch and explore
-                        our clinical brand video or configure your bespoke second-skin shade below.
+                        Physician-grade cosmetic formulations. Explore our brand film or configure your shade below.
                     </p>
                 </div>
 
@@ -287,16 +264,23 @@ export default function Hero() {
                             {/* Cinematic Lighting Vignette */}
                             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/35" />
 
-                            {/* Top Left: Live Shoppable Badge */}
-                            <div className="absolute top-4 left-4 flex items-center gap-2 rounded-full border border-white/20 bg-black/55 px-3.5 py-1.5 backdrop-blur-md">
-                                <span className="h-2 w-2 rounded-full bg-rose-500 animate-pulse" />
-                                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/90 font-medium">
-                                    Brand Film · Shoppable Hotspots
-                                </span>
+                            {/* Top Left: Live Shoppable Badge with hover-reveal wordings */}
+                            <div className="group/badge absolute top-4 left-4 z-20 flex items-center rounded-full border border-white/20 bg-black/55 backdrop-blur-md transition-all duration-300 hover:border-white/40 hover:bg-black/75 cursor-default">
+                                <div className="flex items-center justify-center p-2.5">
+                                    <span className="relative flex h-2.5 w-2.5">
+                                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-rose-400 opacity-75" />
+                                        <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-rose-500" />
+                                    </span>
+                                </div>
+                                <div className="max-w-0 overflow-hidden whitespace-nowrap opacity-0 transition-all duration-300 ease-out group-hover/badge:max-w-xs group-hover/badge:opacity-100 group-hover/badge:pr-3.5">
+                                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/90 font-medium">
+                                        · Shoppable Products
+                                    </span>
+                                </div>
                             </div>
 
                             {/* Top Right: Discreet Playback & Audio Controls */}
-                            <div className="absolute top-4 right-4 flex items-center gap-2">
+                            {/* <div className="absolute top-4 right-4 flex items-center gap-2">
                                 <button
                                     type="button"
                                     onClick={toggleAudio}
@@ -315,7 +299,7 @@ export default function Hero() {
                                 >
                                     {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4 translate-x-0.5" />}
                                 </button>
-                            </div>
+                            </div> */}
 
                             {/* Clickable Interactive Hotspots / Pins on Video */}
                             {VIDEO_HOTSPOTS.map((hotspot) => {
@@ -331,6 +315,8 @@ export default function Hero() {
                                             onClick={() => openHotspot(hotspot)}
                                             onMouseEnter={() => setActiveHotspotHover(hotspot.id)}
                                             onMouseLeave={() => setActiveHotspotHover(null)}
+                                            onFocus={() => setActiveHotspotHover(hotspot.id)}
+                                            onBlur={() => setActiveHotspotHover(null)}
                                             aria-label={`Shop ${hotspot.name}`}
                                             className="relative flex items-center justify-center p-2 focus:outline-none"
                                         >
@@ -349,19 +335,22 @@ export default function Hero() {
 
                                         {/* Floating Glassmorphic Hotspot Preview Tooltip */}
                                         <div
-                                            className={`absolute left-1/2 bottom-full mb-3 -translate-x-1/2 w-48 rounded-2xl glass-solid border border-white/30 bg-black/85 p-3 shadow-2xl backdrop-blur-xl transition-all duration-300 pointer-events-auto ${
-                                                isHovered
-                                                    ? 'opacity-100 scale-100 translate-y-0 visible'
-                                                    : 'opacity-0 scale-95 translate-y-2 invisible'
-                                            }`}
+                                            role="tooltip"
+                                            className={`absolute left-1/2 bottom-full mb-3 -translate-x-1/2 w-48 rounded-2xl glass-solid border border-white/20 bg-black/90 p-3 shadow-2xl backdrop-blur-xl transition-all duration-200 pointer-events-auto z-30 ${isHovered
+                                                ? 'opacity-100 scale-100 translate-y-0 visible'
+                                                : 'opacity-0 scale-95 translate-y-1 invisible'
+                                                }`}
                                         >
-                                            <div className="flex items-center gap-2 mb-1.5">
+                                            <div className="flex items-center gap-1.5 mb-1">
                                                 <span className="h-2 w-2 rounded-full" style={{ backgroundColor: hotspot.hex }} />
-                                                <span className="font-mono text-[9px] uppercase tracking-wider text-white/70">
+                                                <span className="font-mono text-[9px] uppercase tracking-wider text-white/60">
                                                     {hotspot.badge}
                                                 </span>
                                             </div>
                                             <p className="font-display text-sm font-medium text-white truncate">{hotspot.name}</p>
+                                            {hotspot.description && (
+                                                <p className="text-[11px] text-white/70 font-light mt-0.5 line-clamp-1">{hotspot.description}</p>
+                                            )}
                                             <div className="flex items-center justify-between mt-2 pt-2 border-t border-white/10 text-xs">
                                                 <span className="font-mono text-emerald-400 font-semibold">{formatPrice(hotspot.price)}</span>
                                                 <button
@@ -389,7 +378,7 @@ export default function Hero() {
                                     onClick={() => openHotspot(VIDEO_HOTSPOTS[0])}
                                     className="font-mono text-[11px] uppercase tracking-wider font-medium text-white bg-white/20 hover:bg-white/30 px-3.5 py-1 rounded-full border border-white/20 backdrop-blur-md transition-all flex items-center gap-1.5"
                                 >
-                                    <span>Hotspot Details</span>
+                                    <span>Purchase</span>
                                     <ArrowRight className="h-3 w-3" />
                                 </button>
                             </div>
@@ -399,13 +388,13 @@ export default function Hero() {
                         <div className="mt-5 glass-panel rounded-2xl p-3 border border-border/50">
                             <div className="flex items-center justify-between mb-2 px-1">
                                 <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/50">
-                                    Interactive Catalog Showcase · Explore at your pace
+                                    · Explore Featured Products
                                 </span>
                                 <span className="font-mono text-[10px] text-primary">
                                     {activeProductIdx + 1} of {FEATURED_PRODUCTS.length}
                                 </span>
                             </div>
-                            <div className="grid grid-cols-4 gap-2">
+                            <div className="grid grid-cols-3 gap-2">
                                 {FEATURED_PRODUCTS.map((prod, idx) => {
                                     const isSelected = idx === activeProductIdx;
                                     return (
@@ -417,11 +406,10 @@ export default function Hero() {
                                                 setSelectedShadeIdx(0);
                                                 setActiveAngle('main');
                                             }}
-                                            className={`rounded-xl p-2 text-left transition-all flex items-center gap-2.5 border ${
-                                                isSelected
-                                                    ? 'border-primary bg-primary/10 shadow-md ring-1 ring-primary/40'
-                                                    : 'border-border/40 bg-card/40 hover:bg-card/80 hover:border-border'
-                                            }`}
+                                            className={`rounded-xl p-2 text-left transition-all flex items-center gap-2.5 border ${isSelected
+                                                ? 'border-primary bg-primary/10 shadow-md ring-1 ring-primary/40'
+                                                : 'border-border/40 bg-card/40 hover:bg-card/80 hover:border-border'
+                                                }`}
                                         >
                                             <div className="h-10 w-9 rounded-lg overflow-hidden bg-black/30 shrink-0 flex items-center justify-center">
                                                 <img
@@ -487,9 +475,8 @@ export default function Hero() {
                                         type="button"
                                         onClick={() => setActiveAngle('main')}
                                         aria-label="View flagship bottle"
-                                        className={`px-2.5 py-1 rounded-full text-[10px] font-mono transition-colors ${
-                                            activeAngle === 'main' ? 'bg-primary text-primary-foreground font-medium' : 'text-white/70 hover:text-white'
-                                        }`}
+                                        className={`px-2.5 py-1 rounded-full text-[10px] font-mono transition-colors ${activeAngle === 'main' ? 'bg-primary text-primary-foreground font-medium' : 'text-white/70 hover:text-white'
+                                            }`}
                                     >
                                         Bottle
                                     </button>
@@ -497,9 +484,8 @@ export default function Hero() {
                                         type="button"
                                         onClick={() => setActiveAngle('alt')}
                                         aria-label="View studio photography application"
-                                        className={`px-2.5 py-1 rounded-full text-[10px] font-mono transition-colors ${
-                                            activeAngle === 'alt' ? 'bg-primary text-primary-foreground font-medium' : 'text-white/70 hover:text-white'
-                                        }`}
+                                        className={`px-2.5 py-1 rounded-full text-[10px] font-mono transition-colors ${activeAngle === 'alt' ? 'bg-primary text-primary-foreground font-medium' : 'text-white/70 hover:text-white'
+                                            }`}
                                     >
                                         Studio
                                     </button>
@@ -512,36 +498,54 @@ export default function Hero() {
                                 </div>
                             </div>
 
-                            {/* Interactive Shade Selector */}
+                            {/* Interactive Shade Selector — hover-reveal names */}
                             {activeProduct.shades.length > 1 && (
                                 <div className="mb-4">
                                     <div className="flex items-center justify-between text-xs mb-2">
                                         <span className="font-mono text-[11px] uppercase tracking-wider text-foreground/70">
-                                            Select Calibrated Shade:
+                                            Shade
                                         </span>
                                         <span className="font-mono text-[10px] text-primary">{activeShade.undertone}</span>
                                     </div>
-                                    <div className="flex flex-wrap items-center gap-2">
+                                    <div className="flex flex-wrap items-center gap-2.5">
                                         {activeProduct.shades.map((sh, idx) => {
                                             const isCurrent = idx === selectedShadeIdx;
+                                            const isHovered = hoveredShadeIdx === idx;
                                             return (
-                                                <button
-                                                    key={sh.name}
-                                                    type="button"
-                                                    onClick={() => setSelectedShadeIdx(idx)}
-                                                    aria-label={`Select ${sh.name}`}
-                                                    className={`group flex items-center gap-2 rounded-full px-3 py-1.5 border transition-all ${
-                                                        isCurrent
-                                                            ? 'border-primary bg-primary/10 shadow-sm ring-1 ring-primary/50'
-                                                            : 'border-border/40 bg-card/40 hover:border-border hover:bg-card/70'
-                                                    }`}
-                                                >
-                                                    <span
-                                                        className="h-3.5 w-3.5 rounded-full ring-1 ring-white/50 shrink-0"
+                                                <div key={sh.name} className="relative">
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => {
+                                                            setSelectedShadeIdx(idx);
+                                                            setHoveredShadeIdx(idx);
+                                                            setTimeout(() => {
+                                                                setHoveredShadeIdx((curr) => (curr === idx ? null : curr));
+                                                            }, 1800);
+                                                        }}
+                                                        onMouseEnter={() => setHoveredShadeIdx(idx)}
+                                                        onMouseLeave={() => setHoveredShadeIdx(null)}
+                                                        onFocus={() => setHoveredShadeIdx(idx)}
+                                                        onBlur={() => setHoveredShadeIdx(null)}
+                                                        onTouchStart={() => setHoveredShadeIdx(idx)}
+                                                        aria-label={`Select ${sh.name}`}
+                                                        className={`h-7 w-7 rounded-full shrink-0 transition-all duration-200 outline-none ${isCurrent
+                                                            ? 'ring-2 ring-primary ring-offset-2 ring-offset-background scale-110 shadow-md'
+                                                            : 'ring-1 ring-white/40 hover:scale-110 hover:ring-foreground/50'
+                                                            }`}
                                                         style={{ backgroundColor: sh.hex }}
                                                     />
-                                                    <span className="font-mono text-[10px] text-foreground font-medium">{sh.name}</span>
-                                                </button>
+                                                    {/* Hover-reveal shade name tooltip */}
+                                                    <div
+                                                        role="tooltip"
+                                                        className={`absolute left-1/2 -translate-x-1/2 bottom-full mb-2 whitespace-nowrap rounded-lg bg-black/85 backdrop-blur-md px-2.5 py-1 text-[10px] font-mono text-white shadow-xl border border-white/10 pointer-events-none transition-all duration-200 z-30 ${isHovered
+                                                            ? 'opacity-100 translate-y-0 visible'
+                                                            : 'opacity-0 translate-y-1 invisible'
+                                                            }`}
+                                                    >
+                                                        {sh.name}
+                                                        <span className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-[4px] border-r-[4px] border-t-[4px] border-l-transparent border-r-transparent border-t-black/85" />
+                                                    </div>
+                                                </div>
                                             );
                                         })}
                                     </div>
@@ -557,11 +561,10 @@ export default function Hero() {
                                     <button
                                         type="button"
                                         onClick={() => setSelectedSize('30ml')}
-                                        className={`rounded-xl border py-2.5 px-3 text-xs font-mono transition-all flex items-center justify-between ${
-                                            selectedSize === '30ml'
-                                                ? 'border-primary bg-primary/10 text-primary font-medium'
-                                                : 'border-border/40 bg-card/40 text-foreground/70 hover:text-foreground'
-                                        }`}
+                                        className={`rounded-xl border py-2.5 px-3 text-xs font-mono transition-all flex items-center justify-between ${selectedSize === '30ml'
+                                            ? 'border-primary bg-primary/10 text-primary font-medium'
+                                            : 'border-border/40 bg-card/40 text-foreground/70 hover:text-foreground'
+                                            }`}
                                     >
                                         <span>30 ML Standard</span>
                                         <span className="text-[10px] opacity-75">{formatPrice(activeProduct.price)}</span>
@@ -569,11 +572,10 @@ export default function Hero() {
                                     <button
                                         type="button"
                                         onClick={() => setSelectedSize('50ml')}
-                                        className={`rounded-xl border py-2.5 px-3 text-xs font-mono transition-all flex items-center justify-between ${
-                                            selectedSize === '50ml'
-                                                ? 'border-primary bg-primary/10 text-primary font-medium'
-                                                : 'border-border/40 bg-card/40 text-foreground/70 hover:text-foreground'
-                                        }`}
+                                        className={`rounded-xl border py-2.5 px-3 text-xs font-mono transition-all flex items-center justify-between ${selectedSize === '50ml'
+                                            ? 'border-primary bg-primary/10 text-primary font-medium'
+                                            : 'border-border/40 bg-card/40 text-foreground/70 hover:text-foreground'
+                                            }`}
                                     >
                                         <span>50 ML Studio Pro</span>
                                         <span className="text-[10px] opacity-75">{formatPrice(activeProduct.price * 1.5)}</span>
@@ -624,7 +626,7 @@ export default function Hero() {
                 {/* 3. INTERACTIVE VALUE PROPOSITIONS BAR WITH MICRO-INTERACTIONS */}
                 <div className="mt-12 pt-8 border-t border-border/40">
                     <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-foreground/50 text-center mb-5">
-                        Sylvia Aesthetics Clinical Guarantees · Touch for Details
+                        Clinical Guarantees · Touch for Details
                     </p>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                         {VALUE_PROPOSITIONS.map((prop) => {
@@ -635,11 +637,10 @@ export default function Hero() {
                                     onMouseEnter={() => setActiveValProp(prop.id)}
                                     onMouseLeave={() => setActiveValProp(null)}
                                     onClick={() => setActiveValProp(isSelected ? null : prop.id)}
-                                    className={`relative cursor-pointer rounded-2xl p-4 border transition-all duration-300 ${
-                                        isSelected
-                                            ? 'border-primary bg-primary/10 shadow-lg scale-[1.02]'
-                                            : 'border-border/40 bg-card/45 hover:border-border hover:bg-card/75'
-                                    }`}
+                                    className={`relative cursor-pointer rounded-2xl p-4 border transition-all duration-300 ${isSelected
+                                        ? 'border-primary bg-primary/10 shadow-lg scale-[1.02]'
+                                        : 'border-border/40 bg-card/45 hover:border-border hover:bg-card/75'
+                                        }`}
                                 >
                                     <div className="flex items-center gap-2 mb-1">
                                         <ShieldCheck className="h-4 w-4 text-primary shrink-0" />
@@ -649,9 +650,8 @@ export default function Hero() {
 
                                     {/* Expandable details on hover / click */}
                                     <div
-                                        className={`overflow-hidden transition-all duration-300 text-[11px] text-foreground/80 font-light mt-2 pt-2 border-t border-border/30 ${
-                                            isSelected ? 'max-h-24 opacity-100' : 'max-h-0 opacity-0 pointer-events-none'
-                                        }`}
+                                        className={`overflow-hidden transition-all duration-300 text-[11px] text-foreground/80 font-light mt-2 pt-2 border-t border-border/30 ${isSelected ? 'max-h-24 opacity-100' : 'max-h-0 opacity-0 pointer-events-none'
+                                            }`}
                                     >
                                         {prop.detail}
                                     </div>

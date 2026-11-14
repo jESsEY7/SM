@@ -98,9 +98,9 @@ export default function ShadeStudio({ products = [] }) {
         <section id="shade-studio" className="relative px-5 py-24 sm:px-8 sm:py-32">
             <div className="mx-auto max-w-7xl">
                 <Reveal className="max-w-xl">
-                    <p className="label-mono text-foreground/50">Sylvia Aesthetics · Clinical Diagnostics</p>
+                    <p className="label-mono text-foreground/50">Beauty Diagnostics</p>
                     <h2 className="mt-4 font-display text-[clamp(2rem,4.5vw,3.5rem)] font-normal leading-[0.95] tracking-[0.08em] uppercase">
-                        Clinical Shade Studio
+                        Shade Studio Finder
                     </h2>
                     <p className="mt-4 text-[15px] leading-relaxed text-foreground/65">
                         Calibrate your skin depth and natural undertone — our dermatological formula selector matches you
@@ -135,9 +135,8 @@ export default function ShadeStudio({ products = [] }) {
 
                             {/* Sweeping Laser Scan Line */}
                             <div
-                                className={`pointer-events-none absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-75 shadow-[0_0_16px_3px_var(--accent-glow)] transition-all duration-300 ${
-                                    scanning ? 'scale-y-150 animate-pulse' : ''
-                                }`}
+                                className={`pointer-events-none absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-75 shadow-[0_0_16px_3px_var(--accent-glow)] transition-all duration-300 ${scanning ? 'scale-y-150 animate-pulse' : ''
+                                    }`}
                                 style={{
                                     top: `${reticle.y}%`,
                                 }}
@@ -305,11 +304,10 @@ export default function ShadeStudio({ products = [] }) {
                                             <button
                                                 type="button"
                                                 onClick={() => setSelectedProduct(product)}
-                                                className={`flex w-full items-center gap-3 rounded-2xl border px-3.5 py-2.5 text-left transition-all duration-200 ${
-                                                    isSelected
-                                                        ? 'border-primary/60 bg-primary/10 ring-1 ring-primary shadow-sm'
-                                                        : 'border-border/40 bg-card/40 hover:bg-card/80 hover:border-border/70'
-                                                }`}
+                                                className={`flex w-full items-center gap-3 rounded-2xl border px-3.5 py-2.5 text-left transition-all duration-200 ${isSelected
+                                                    ? 'border-primary/60 bg-primary/10 ring-1 ring-primary shadow-sm'
+                                                    : 'border-border/40 bg-card/40 hover:bg-card/80 hover:border-border/70'
+                                                    }`}
                                             >
                                                 <span
                                                     className="h-8 w-8 shrink-0 rounded-full ring-2 ring-white/25 shadow-sm"

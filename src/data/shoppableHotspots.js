@@ -7,9 +7,9 @@ export const VIDEO_HOTSPOTS = [
         shade: 'Shade 08 · Deep Cocoa',
         price: 48.00,
         hex: '#6B3B24',
-        badge: 'Flagship Formulation',
+        badge: 'New Arrival',
         finish: 'Second-Skin Mineral Fluid',
-        description: 'Melanocyte-calibrated fluid with hyaluronic multi-depth hydration and cellular squalane.',
+        description: 'Melanocyte-calibrated fluid with hyaluronic hydration.',
         image: '/images/products/flagship-skin-tint-isolated.png',
         productId: 1,
     },
@@ -23,10 +23,12 @@ export const VIDEO_HOTSPOTS = [
         hex: '#2A1612',
         badge: 'Fan Favorite',
         finish: '6-Hour Mirror Glass Finish',
-        description: 'Ultra-dense micro-pigment suspension in organic cold-pressed rosehip seed oil.',
+        description: 'Dense micro-pigment in organic rosehip oil.',
         image: '/images/products/catalog-2.jpeg',
         productId: 3,
     },
+    /* Botanical Recovery Elixir — hidden from storefront (skincare).
+       Preserved for future reactivation. Uncomment to restore.
     {
         id: 'hotspot-elixir',
         x: 75,
@@ -41,6 +43,7 @@ export const VIDEO_HOTSPOTS = [
         image: '/images/products/catalog-9.jpeg',
         productId: 10,
     },
+    */
 ];
 
 export const VALUE_PROPOSITIONS = [
@@ -114,7 +117,7 @@ export const UGC_REVIEWS = [
         location: 'Lavington, Nairobi',
         rating: 5,
         shade: 'Mocha Truffle',
-        text: 'The velvet lip contour combined with the Botanical Elixir transformed my skincare and daily makeup routine.',
+        text: 'The velvet lip contour creates the most seamless definition. Rich, comfortable pigment with zero feathering.',
         image: '/images/showcase/WhatsApp_Image_2026-11-10_at_03.17.55.jpeg',
         productName: 'Velvet Lip Contour',
         productPrice: 38,

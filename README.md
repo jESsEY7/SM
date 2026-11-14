@@ -1,6 +1,6 @@
 # Sylvia Aesthetics — Clinical Skincare & Dermatological Formulations
 
-A full-stack clinical aesthetics and luxury cosmetic e-commerce application engineered for **Sylvia Aesthetics** (`Sylviamuchiriaesthetics.com`).
+A full-stack clinical aesthetics and luxury cosmetic e-commerce application engineered for **Sylvia Aesthetics** (`sylviamuchiraesthetics.beauty`).
 
 ![Sylvia Aesthetics Banner](public/images/products/flagship-skin-tint.jpg)
 

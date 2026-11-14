@@ -89,7 +89,7 @@ export default function SylviaBrandLogo({
                     Sylvia Aesthetics
                 </span>
                 <span className="font-serif text-[10px] sm:text-[11px] tracking-[0.42em] uppercase text-foreground/60 mt-1.5 font-light">
-                    Clinic
+                    Skin Beauty
                 </span>
             </div>
         );
@@ -104,7 +104,7 @@ export default function SylviaBrandLogo({
                     Sylvia Aesthetics
                 </span>
                 <span className="font-serif text-[8.5px] sm:text-[9.5px] tracking-[0.38em] uppercase text-foreground/55 mt-1 font-light">
-                    Skin Clinic
+                    Skin Beauty
                 </span>
             </div>
         </div>

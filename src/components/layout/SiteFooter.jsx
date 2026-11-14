@@ -21,28 +21,28 @@ const COLUMNS = [
         title: 'Formulas & Shop',
         links: [
             { label: 'All Formulations', href: '#catalog' },
-            { label: 'Flagship Skin Tint', href: '#catalog' },
+            // { label: 'Flagship face Tint', href: '#catalog' },
             { label: 'Precision Lip Lacquers', href: '#catalog' },
-            { label: 'Cellular Lipid Elixirs', href: '#catalog' },
+            { label: 'Velvet Lip Contours', href: '#catalog' },
             { label: 'Radiant Cheek Flush', href: '#catalog' },
         ],
     },
-    {
-        title: 'Clinical Diagnostics',
-        links: [
-            { label: 'Clinical Shade Matching Studio', href: '#shade-studio' },
-            { label: 'Verified Results & UGC', href: '#clinical-social-proof' },
-            { label: 'Peptide & Pigment Science', href: '#formula' },
-            { label: 'Bespoke Treatments', href: '#clinical-services' },
-        ],
-    },
+    // {
+    //     title: 'Beauty Diagnostics',
+    //     links: [
+    //         { label: 'Shade Matching Studio', href: '#shade-studio' },
+    //         { label: 'Verified Results & UGC', href: '#clinical-social-proof' },
+    //         { label: 'Peptide & Pigment Theory', href: '#formula' },
+    //         { label: 'Bespoke Treatments', href: '#clinical-services' },
+    //     ],
+    // },
     {
         title: 'Assurance & Policies',
         links: [
             { label: 'Nairobi Same-Day Delivery Policy', href: '#top' },
             { label: 'Safaricom M-Pesa Verification', href: '#top' },
             { label: 'Shade Match Guarantee', href: '#shade-studio' },
-            { label: 'Privacy & Clinical Disclaimers', href: '#top' },
+            { label: 'Privacy & Disclaimers', href: '#top' },
         ],
     },
 ];
@@ -56,11 +56,11 @@ const TRUST_BADGES = [
     {
         icon: ShieldCheck,
         title: 'M-Pesa Verified',
-        desc: 'Instant Safaricom Daraja STK Push & QR',
+        desc: 'Instant Safaricom QR',
     },
     {
         icon: Sparkles,
-        title: 'Melanin Calibrated',
+        title: 'Skin Tones Calibrated',
         desc: 'Physician undertone matching',
     },
     {
@@ -113,8 +113,7 @@ export default function SiteFooter() {
                     <div>
                         <SylviaBrandLogo variant="horizontal" className="mb-4" />
                         <p className="mt-3 max-w-sm text-xs sm:text-sm leading-relaxed text-foreground/60 font-light">
-                            Sylvia Aesthetics is a dedicated facial aesthetics and dermatological skin health clinic in
-                            Nairobi. Crafted with pharmaceutical-grade pigments and biomimetic peptides.
+                            Physician-calibrated cosmetics engineered with pure mineral pigments and biomimetic formulations in Nairobi.
                         </p>
 
                         {/* Newsletter Signup Form */}
@@ -155,15 +154,15 @@ export default function SiteFooter() {
                             <p className="flex items-center gap-2">
                                 <Mail className="h-3.5 w-3.5 text-primary shrink-0" />
                                 <a
-                                    href="mailto:concierge@sylviamuchiriaesthetics.com"
+                                    href="mailto:info@sylviamuchiraesthetics.beauty"
                                     className="hover:text-foreground transition-colors"
                                 >
-                                    concierge@sylviamuchiriaesthetics.com
+                                    info@sylviamuchiraesthetics.beauty
                                 </a>
                             </p>
                             <p className="flex items-center gap-2">
                                 <MapPin className="h-3.5 w-3.5 text-primary shrink-0" />
-                                <span>Riverside & Westlands · Nairobi, Kenya</span>
+                                <span> Nairobi, Kenya</span>
                             </p>
                         </div>
 
@@ -212,7 +211,7 @@ export default function SiteFooter() {
                 {/* 3. Footer Bottom */}
                 <div className="mt-16 flex flex-col gap-4 border-t border-border/40 pt-6 text-[11px] text-foreground/50 sm:flex-row sm:items-center sm:justify-between">
                     <p className="font-mono text-[10px]">
-                        © 2026 Sylvia Aesthetics Skin Clinic Ltd. · Sylviamuchiriaesthetics.com · All rights reserved.
+                        © 2026 Sylvia Aesthetics . · sylviamuchiraesthetics.beauty · All rights reserved.
                     </p>
                     <div className="flex items-center gap-4">
                         {isAdmin ? (
@@ -230,7 +229,7 @@ export default function SiteFooter() {
                                 className="glass-btn inline-flex h-8 items-center gap-2 rounded-full px-4 text-foreground/80 hover:text-foreground text-xs font-mono uppercase tracking-wider"
                             >
                                 <Lock className="h-3.5 w-3.5" strokeWidth={1.6} />
-                                Staff Portal
+
                             </button>
                         )}
                     </div>

@@ -6,63 +6,63 @@ import { SylviaMonogram } from '@/components/ui/SylviaBrandLogo';
 const CLINICAL_PROCEDURES = [
     {
         id: 'facial-contour',
-        title: 'Precision Facial Rejuvenation',
-        category: 'Aesthetic Medicine',
+        title: 'Bridal Radiance Package',
+        category: 'Aesthetic Beauty Products',
         subtitle: 'Advanced micro-infusion & skin contouring',
         image: '/images/clinic/clinic-1.jpeg',
         time: '60 min',
-        doctor: 'Sylvia Muchiri, Lead Aesthetic Specialist',
-        description: 'Biomimetic peptide infusion combined with micro-targeted hydration to restore cellular volume and natural luminance.',
+        doctor: 'Sylvia',
+        description: 'Biomimetic peptide infusion to restore cellular volume and natural luminance.',
     },
     {
         id: 'barrier-repair',
         title: 'Cellular Barrier Hydration',
-        category: 'Clinical Dermatology',
+        category: 'Beauty Dermatology',
         subtitle: 'Ceramide micro-lipid conditioning',
         image: '/images/clinic/clinic-2.jpeg',
         time: '45 min',
-        doctor: 'Sylvia Muchiri, Aesthetic Specialist',
-        description: 'Deep dermal squalane bath designed to soothe erythema, rebuild epidermal lipids, and lock in nine-hour moisture.',
+        doctor: 'Sylvia  ',
+        description: 'Deep squalane bath to soothe erythema and rebuild epidermal lipids.',
     },
     {
         id: 'radiance-peel',
-        title: 'Skin Health & Complexion Glow',
+        title: 'Complexion Glow',
         category: 'Facial Aesthetics',
         subtitle: 'Non-invasive radiance stimulation',
         image: '/images/clinic/clinic-3.jpeg',
         time: '50 min',
-        doctor: 'Sylvia Muchiri,Aesthetic Specialist',
-        description: 'Medical-grade antioxidants and gentle exfoliating botanical acids calibrated for melanin-rich and sensitive skin types.',
+        doctor: 'Sylvia',
+        description: 'Antioxidants and botanical acids calibrated for melanin-rich and sensitive skin.',
     },
     {
         id: 'diagnostic-suite',
-        title: 'Bespoke Aesthetic Diagnostics',
+        title: 'Advanced Aesthetic Beauty Diagnostics',
         category: 'Consultation',
         subtitle: 'Undertone reading & personalized regimen',
         image: '/images/clinic/clinic-4.jpeg',
         time: '30 min',
-        doctor: 'Sylvia Muchiri, Aesthetic Specialist',
-        description: 'High-resolution digital skin analysis to determine depth, undertone, elasticity, and formulate your personalized shade match.',
+        doctor: 'Sylvia',
+        description: 'Digital skin-tone analysis for depth, undertone, elasticity and personalized shade matching.',
     },
     {
         id: 'collagen-boost',
         title: 'Micro-Targeted Peptide Therapy',
-        category: 'Collagen Activation',
+        category: 'Facial Aesthetics',
         subtitle: 'Active dermal renewal',
         image: '/images/clinic/clinic-5.jpeg',
         time: '60 min',
-        doctor: 'Precision Therapy',
-        description: 'Targeted delivery of multi-weight hyaluronic acid and bioactive amino acids for prolonged firmness and refined texture.',
+        doctor: 'Sylvia',
+        description: 'Multi-weight hyaluronic acid and bioactive amino acids for firmness and texture.',
     },
     {
         id: 'sculpt-glow',
-        title: 'Advanced Skin Restoration',
+        title: 'Advanced Make up Restoration',
         category: 'Treatment Protocol',
         subtitle: 'Complete skin recovery & glow',
         image: '/images/clinic/clinic-6.jpeg',
         time: '75 min',
-        doctor: 'Sylvia Muchiri, Aesthetic Specialist',
-        description: 'Comprehensive restorative protocol combining lymphatic drainage, cryo-sculpting, and customized clinical pigment blending.',
+        doctor: 'Sylvia',
+        description: 'Lymphatic drainage, cryo-sculpting and customized clinical pigment blending.',
     },
 ];
 
@@ -77,19 +77,19 @@ export default function ClinicalGallery() {
                     <Reveal className="max-w-2xl">
                         <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3.5 py-1 text-xs text-primary font-medium mb-4">
                             <Sparkles className="h-3.5 w-3.5" />
-                            <span>Sylvia Aesthetics · Clinical Experience</span>
+                            <span>Sylvia Aesthetics </span>
                         </div>
                         <h2 className="font-display text-[clamp(2.2rem,4.5vw,3.75rem)] font-normal uppercase leading-[0.94] tracking-[0.08em] text-foreground">
-                            Treatments & Aesthetic Therapies
+                            Treatments & Therapies
                         </h2>
                         <p className="mt-4 text-[15px] leading-relaxed text-foreground/70">
-                            Experience physician-grade skin therapies performed in our private Nairobi treatment rooms.
+                            Experience physician-grade products in our product line.
                         </p>
                     </Reveal>
                     <div className="shrink-0 flex items-center gap-3">
                         <SylviaMonogram className="h-10 w-6 text-primary" />
                         <span className="label-mono text-xs text-foreground/50">
-                            Inquire: info@sylviamuchiriaesthetics.com
+                            Inquire: info@sylviamuchiraesthetics.beauty
                         </span>
                     </div>
                 </div>
@@ -159,17 +159,17 @@ export default function ClinicalGallery() {
                         <div>
                             <div className="inline-flex items-center gap-2 text-primary text-xs uppercase tracking-[0.2em] font-mono mb-2">
                                 <Award className="h-4 w-4" />
-                                <span>Sylvia Muchiri Aesthetics Clinic</span>
+                                <span>Sylvia Muchiri Aesthetics</span>
                             </div>
                             <h3 className="font-display text-2xl sm:text-4xl font-normal uppercase leading-[1.05] tracking-[0.08em] text-foreground">
-                                Private Clinical Consultations in Nairobi
+                                Expert Beauty Consultation
                             </h3>
                             <p className="mt-4 text-sm leading-relaxed text-foreground/75 font-light max-w-lg">
-                                Schedule an appointment with our clinical specialists or explore our medical-grade shade matching studio.
+                                Explore our shade matching studio.
                             </p>
                             <div className="mt-7 flex flex-wrap gap-3">
                                 <a
-                                    href="mailto:concierge@sylviamuchiriaesthetics.com?subject=Consultation%20Inquiry%20-%20Sylvia%20Aesthetics"
+                                    href="mailto:info@sylviamuchiraesthetics.beauty?subject=Consultation%20Inquiry%20-%20Sylvia%20Aesthetics"
                                     className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-primary px-7 text-[11px] font-medium uppercase tracking-[0.24em] text-primary-foreground shadow-lg hover:shadow-primary/30 transition-all"
                                 >
                                     Book Session

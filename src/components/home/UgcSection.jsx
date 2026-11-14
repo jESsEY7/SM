@@ -32,20 +32,19 @@ export default function UgcSection() {
                     <div>
                         <div className="inline-flex items-center gap-2 rounded-full border border-border/50 bg-card/70 px-3.5 py-1 text-xs font-mono uppercase tracking-[0.2em] text-foreground/70 mb-3 backdrop-blur-md">
                             <ShieldCheck className="h-3.5 w-3.5 text-primary" />
-                            <span>Verified Clinical Results & UGC</span>
+                            <span>Verified</span>
                         </div>
                         <h2 className="font-display text-[clamp(2rem,4.5vw,3.5rem)] font-normal uppercase leading-[0.94] tracking-[-0.02em] text-foreground">
-                            Real Skin. True Melanin Radiance.
+                            Real Beauty. True Radiance.
                         </h2>
                     </div>
                     <div className="max-w-md">
                         <p className="text-sm text-foreground/70 font-light leading-relaxed">
-                            Captured live from our Nairobi clinic patients and daily skin tint wearers. Real skin with
-                            cellular hydration and physician-matched undertones.
+                            Verified skin tint wearers. Real Beauty with Cellular hydration and physician-matched undertones.
                         </p>
                         <div className="mt-3 flex items-center gap-2 text-xs font-mono text-primary font-medium">
                             <Heart className="h-3.5 w-3.5 fill-primary" />
-                            <span>98.6% Client Melanin Match Satisfaction</span>
+                            <span>98.6% Match Satisfaction</span>
                         </div>
                     </div>
                 </div>
@@ -70,11 +69,11 @@ export default function UgcSection() {
                                 {/* Verified Patient Seal */}
                                 <div className="absolute top-3 left-3 flex items-center gap-1.5 rounded-full bg-black/60 px-3 py-1 text-[9px] font-mono uppercase tracking-wider text-white backdrop-blur-md border border-white/20">
                                     <ShieldCheck className="h-3 w-3 text-emerald-400" />
-                                    <span>Verified Match</span>
+                                    <span>Verified </span>
                                 </div>
 
                                 {/* Video Play Pill */}
-                                <button
+                                {/* <button
                                     type="button"
                                     onClick={() => setActiveVideoModal(true)}
                                     aria-label="Play brand film snippet"

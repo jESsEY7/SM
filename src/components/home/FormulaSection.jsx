@@ -28,21 +28,20 @@ export default function FormulaSection() {
                             className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
                         />
                         <div className="absolute inset-x-4 bottom-4 flex items-center justify-between rounded-2xl bg-card/85 px-4 py-3 backdrop-blur-md border border-border/40 shadow-lg">
-                            <span className="label-mono text-foreground text-xs font-medium">Sylvia Aesthetics · Protocol 01</span>
-                            <span className="label-mono text-primary text-xs">Biomimetic Science</span>
+                            <span className="label-mono text-foreground text-xs font-medium">Sylvia Aesthetics </span>
+                            <span className="label-mono text-primary text-xs">Make-up Beauty </span>
                         </div>
                     </div>
                 </div>
 
                 <div className="flex flex-col justify-center gap-8 lg:pl-6">
                     <div>
-                        <p className="label-mono text-foreground/50">Sylvia Aesthetics · Formula Architecture</p>
+                        <p className="label-mono text-foreground/50">Aesthetics</p>
                         <h2 className="mt-4 font-display text-[clamp(2rem,4.5vw,3.5rem)] font-normal leading-[0.95] tracking-[0.08em] uppercase">
-                            Clinical Purity. Cellular Radiance.
+                            Pigment Theory
                         </h2>
                         <p className="mt-4 max-w-md text-[15px] leading-relaxed text-foreground/65">
-                            Each Sylvia Aesthetics formula is built from three clinical layers. Tap a node to read how it nourishes
-                            and enriches skin.
+                            Formulated in three  layers for weightless, enduring color.
                         </p>
                     </div>
 

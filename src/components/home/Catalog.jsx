@@ -24,18 +24,18 @@ export default function Catalog({ products }) {
             <div className="mx-auto max-w-7xl">
                 <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
                     <Reveal className="max-w-xl">
-                        <p className="label-mono text-foreground/50">Sylvia Aesthetics · Clinical Catalog</p>
+                        <p className="label-mono text-foreground/50">The Shop</p>
                         <h2 className="mt-4 font-display text-[clamp(2rem,4.5vw,3.5rem)] font-normal leading-[0.95] tracking-[0.08em] uppercase">
-                            Clinical Formulations. Pure Radiance.
+                            Collection
                         </h2>
                         <p className="mt-4 text-[15px] leading-relaxed text-foreground/65">
-                            Every formula is engineered with cellular hydration and dermatological pigments.
+                            Formulated with-lovngreding inents that enhance the natural hues of the skin.
                         </p>
                     </Reveal>
-                    <div className="flex flex-wrap items-center gap-3">
+                    {/* <div className="flex flex-wrap items-center gap-3">
                         <CurrencySelector />
                         <p className="label-mono shrink-0 text-foreground/50">{visible.length} formulas shown</p>
-                    </div>
+                    </div> */}
                 </div>
 
                 <div className="mt-10 space-y-3">

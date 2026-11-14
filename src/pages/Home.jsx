@@ -10,11 +10,12 @@ import ShadeStudio from '@/components/home/ShadeStudio';
 import FormulaSection from '@/components/home/FormulaSection';
 import UgcSection from '@/components/home/UgcSection';
 import { fetchProducts } from '@/lib/catalog';
-import { CLINICAL_PRODUCTS } from '@/data/clinicalProducts';
+import { CLINICAL_PRODUCTS, HIDDEN_PRODUCT_SLUGS } from '@/data/clinicalProducts';
 
 export default function Home() {
     const { data: products, isLoading } = useQuery({ queryKey: ['products'], queryFn: fetchProducts });
-    const list = Array.isArray(products) && products.length > 0 ? products : CLINICAL_PRODUCTS;
+    const rawList = Array.isArray(products) && products.length > 0 ? products : CLINICAL_PRODUCTS;
+    const list = rawList.filter((p) => !HIDDEN_PRODUCT_SLUGS.includes(p.slug));
 
     return (
         <div className="relative min-h-screen overflow-x-hidden bg-transparent text-foreground transition-colors duration-500">

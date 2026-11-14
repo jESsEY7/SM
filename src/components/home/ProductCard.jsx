@@ -1,5 +1,5 @@
-import { useState, useRef } from 'react';
-import { Plus, Check, Star, Play, Sparkles } from 'lucide-react';
+import { useState } from 'react';
+import { Plus, Check, Star, Sparkles } from 'lucide-react';
 import { Image } from '@/components/ui/image';
 import { useCart } from '@/lib/cart';
 import { useCurrency } from '@/lib/currency';
@@ -10,7 +10,6 @@ export default function ProductCard({ product }) {
     const [formulaOpen, setFormulaOpen] = useState(false);
     const [justAdded, setJustAdded] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
-    const videoRef = useRef(null);
 
     const handleAdd = (e) => {
         e.stopPropagation();
@@ -19,26 +18,11 @@ export default function ProductCard({ product }) {
         setTimeout(() => setJustAdded(false), 1600);
     };
 
-    const handleMouseEnter = () => {
-        setIsHovered(true);
-        if (videoRef.current) {
-            videoRef.current.currentTime = 0;
-            videoRef.current.play().catch(() => {});
-        }
-    };
-
-    const handleMouseLeave = () => {
-        setIsHovered(false);
-        if (videoRef.current) {
-            videoRef.current.pause();
-        }
-    };
-
     return (
         <article
             className="group relative"
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
         >
             <div className="glass-panel relative overflow-hidden rounded-[1.75rem] p-2.5 transition-all duration-500 group-hover:border-primary/50 group-hover:shadow-[0_20px_45px_-15px_var(--accent-glow)]">
                 <div className="relative aspect-[3/4] overflow-hidden rounded-[1.35rem] bg-black/40">
@@ -49,31 +33,8 @@ export default function ProductCard({ product }) {
                         fittingType="fill"
                         originWidth={768}
                         originHeight={1024}
-                        className={`h-full w-full object-cover transition-all duration-700 ease-out group-hover:scale-[1.06] ${
-                            isHovered ? 'opacity-20 scale-105' : 'opacity-100'
-                        }`}
+                        className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
                     />
-
-                    {/* Hover Dynamic Video Loop Snippet in Action */}
-                    <video
-                        ref={videoRef}
-                        src="/videos/brand-hero.mp4"
-                        muted
-                        loop
-                        playsInline
-                        preload="none"
-                        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 pointer-events-none ${
-                            isHovered ? 'opacity-100 z-10' : 'opacity-0 -z-10'
-                        }`}
-                    />
-
-                    {/* Video Action Badge on Hover */}
-                    {isHovered && (
-                        <div className="absolute bottom-3 left-3 z-20 flex items-center gap-1.5 rounded-full bg-black/70 px-2.5 py-1 text-[9px] font-mono uppercase tracking-wider text-white backdrop-blur-md border border-white/20 animate-in fade-in duration-300">
-                            <Play className="h-2.5 w-2.5 fill-emerald-400 text-emerald-400" />
-                            <span>In-Action Preview</span>
-                        </div>
-                    )}
 
                     {/* Product Badge */}
                     {product.badge && (

@@ -1,3 +1,12 @@
+/**
+ * Slugs hidden from the active storefront.
+ * These products are preserved in CLINICAL_PRODUCTS for future reactivation.
+ * To restore skincare, simply remove entries from this array.
+ */
+export const HIDDEN_PRODUCT_SLUGS = [
+    'sylvia-cellular-elixir', // Botanical Recovery Elixir — skincare serum
+];
+
 export const CLINICAL_PRODUCTS = [
     {
         id: 1,

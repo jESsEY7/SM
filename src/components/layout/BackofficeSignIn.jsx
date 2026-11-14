@@ -54,14 +54,14 @@ export default function BackofficeSignIn({ open, onClose }) {
 
                 <div className="mb-4">
                     <p className="label-mono text-xs uppercase tracking-[0.24em] text-primary mb-1">
-                        Sylvia Aesthetics Clinic
+                        Sylvia Aesthetics
                     </p>
                     <h2 className="font-display text-2xl font-medium uppercase tracking-[0.16em]">
-                        Staff Portal
+                        Authorised Persons
                     </h2>
                 </div>
                 <p className="mt-2 text-sm leading-relaxed text-foreground/60">
-                    Admin access only. Sign in to manage orders and payments.
+                    Admin access only. Sign in to manage.
                 </p>
 
                 {error && (
