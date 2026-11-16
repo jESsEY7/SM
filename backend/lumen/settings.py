@@ -101,14 +101,18 @@ else:
     }
 
 # CORS settings
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173',
-    'http://127.0.0.1:5173',
-    'https://sylviamuchiraesthetics.beauty',
-    'https://www.sylviamuchiraesthetics.beauty',
-    'https://api.sylviamuchiraesthetics.beauty',
-    'https://sylviamuchiri.netlify.app',
-]
+cors_env = config('CORS_ALLOWED_ORIGINS', default=None)
+if cors_env:
+    CORS_ALLOWED_ORIGINS = [s.strip() for s in cors_env.split(',') if s.strip()]
+else:
+    CORS_ALLOWED_ORIGINS = [
+        'http://localhost:5173',
+        'http://127.0.0.1:5173',
+        'https://sylviamuchiraesthetics.beauty',
+        'https://www.sylviamuchiraesthetics.beauty',
+        'https://api.sylviamuchiraesthetics.beauty',
+        'https://sylviamuchiri.netlify.app',
+    ]
 CORS_ALLOW_CREDENTIALS = True
 
 # Custom user model
