@@ -1,12 +1,12 @@
 from rest_framework import status
-from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from .models import User
-from .serializers import LoginSerializer, RegisterSerializer, UserSerializer
+from .serializers import AdminUserSerializer, LoginSerializer, RegisterSerializer, UserSerializer
 
 
 def _get_tokens_for_user(user):
@@ -86,7 +86,16 @@ class UserListView(ListAPIView):
     """Admin only: list registered users in the platform."""
 
     permission_classes = [IsAdminUser]
-    serializer_class = UserSerializer
+    serializer_class = AdminUserSerializer
 
     def get_queryset(self):
         return User.objects.all().order_by('-date_joined')[:200]
+
+
+class UserDetailAdminView(RetrieveUpdateDestroyAPIView):
+    """Admin only: retrieve, update (roles, active status, name) or delete a user."""
+
+    permission_classes = [IsAdminUser]
+    serializer_class = AdminUserSerializer
+    queryset = User.objects.all()
+    lookup_field = 'pk'

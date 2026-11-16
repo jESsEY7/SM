@@ -9,8 +9,17 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'email', 'first_name', 'last_name', 'is_staff']
-        read_only_fields = ['id', 'is_staff']
+        fields = ['id', 'email', 'first_name', 'last_name', 'is_staff', 'is_active', 'date_joined']
+        read_only_fields = ['id', 'is_staff', 'date_joined']
+
+
+class AdminUserSerializer(serializers.ModelSerializer):
+    """Serializer for administrative user management (CRUD)."""
+
+    class Meta:
+        model = User
+        fields = ['id', 'email', 'first_name', 'last_name', 'is_staff', 'is_active', 'is_admin', 'date_joined']
+        read_only_fields = ['id', 'date_joined']
 
 
 class RegisterSerializer(serializers.ModelSerializer):

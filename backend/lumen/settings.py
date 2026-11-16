@@ -18,7 +18,7 @@ DEBUG = config('DEBUG', default=True, cast=bool)
 
 ALLOWED_HOSTS = config(
     'ALLOWED_HOSTS',
-    default='localhost,127.0.0.1,sylviamuchiraesthetics.beauty,www.sylviamuchiraesthetics.beauty',
+    default='localhost,127.0.0.1,sylviamuchiraesthetics.beauty,www.sylviamuchiraesthetics.beauty,api.sylviamuchiraesthetics.beauty',
     cast=lambda v: [s.strip() for s in v.split(',')]
 )
 
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',  # Must be first
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -73,12 +74,31 @@ TEMPLATES = [
 WSGI_APPLICATION = 'lumen.wsgi.application'
 
 # Database
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+database_url = config('DATABASE_URL', default=None)
+if database_url:
+    try:
+        import dj_database_url
+        DATABASES = {
+            'default': dj_database_url.config(
+                default=database_url,
+                conn_max_age=600,
+                conn_health_checks=True,
+            )
+        }
+    except ImportError:
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': BASE_DIR / 'db.sqlite3',
+            }
+        }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
 
 # CORS settings
 CORS_ALLOWED_ORIGINS = [
@@ -86,6 +106,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:5173',
     'https://sylviamuchiraesthetics.beauty',
     'https://www.sylviamuchiraesthetics.beauty',
+    'https://api.sylviamuchiraesthetics.beauty',
     'https://sylviamuchiri.netlify.app',
 ]
 CORS_ALLOW_CREDENTIALS = True

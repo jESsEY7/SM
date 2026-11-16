@@ -14,11 +14,17 @@ import {
     XCircle,
     AlertCircle,
     Eye,
-    X
+    X,
+    Package,
+    Shield,
+    Trash2,
+    UserCheck,
+    UserX
 } from 'lucide-react';
 import { useAuth } from '@/lib/AuthContext';
-import { ordersApi, paymentsApi, authApi } from '@/api';
+import { ordersApi, paymentsApi, authApi, productsApi } from '@/api';
 import OrdersTable from '@/components/backoffice/OrdersTable';
+import ProductManager from '@/components/backoffice/ProductManager';
 import SylviaBrandLogo from '@/components/ui/SylviaBrandLogo';
 
 function money(n) {
@@ -40,13 +46,43 @@ function StatCard({ icon: Icon, label, value, hint = '' }) {
 
 export default function Backoffice() {
     const { user, logout } = useAuth();
-    const [tab, setTab] = useState('orders'); // 'orders' | 'transactions' | 'users'
+    const [tab, setTab] = useState('orders'); // 'orders' | 'products' | 'transactions' | 'users'
     const [orders, setOrders] = useState([]);
     const [transactions, setTransactions] = useState([]);
     const [usersList, setUsersList] = useState([]);
     const [analytics, setAnalytics] = useState(null);
     const [loading, setLoading] = useState(true);
     const [inspectTx, setInspectTx] = useState(null);
+
+    const handleToggleStaff = async (targetUser) => {
+        const nextStaff = !targetUser.is_staff;
+        try {
+            await authApi.updateUser(targetUser.id, { is_staff: nextStaff });
+            setUsersList((prev) => prev.map((u) => (u.id === targetUser.id ? { ...u, is_staff: nextStaff } : u)));
+        } catch {
+            alert('Failed to update user role');
+        }
+    };
+
+    const handleToggleActiveUser = async (targetUser) => {
+        const nextActive = !targetUser.is_active;
+        try {
+            await authApi.updateUser(targetUser.id, { is_active: nextActive });
+            setUsersList((prev) => prev.map((u) => (u.id === targetUser.id ? { ...u, is_active: nextActive } : u)));
+        } catch {
+            alert('Failed to update user status');
+        }
+    };
+
+    const handleDeleteUser = async (targetUser) => {
+        if (!window.confirm(`Delete user account ${targetUser.email}?`)) return;
+        try {
+            await authApi.deleteUser(targetUser.id);
+            setUsersList((prev) => prev.filter((u) => u.id !== targetUser.id));
+        } catch {
+            alert('Failed to delete user');
+        }
+    };
 
     const loadAll = async () => {
         setLoading(true);
@@ -155,7 +191,7 @@ export default function Backoffice() {
                 </div>
 
                 {/* Navigation Tabs */}
-                <div className="mt-8 flex items-center gap-2 border-b border-white/10 pb-3">
+                <div className="mt-8 flex items-center gap-2 border-b border-white/10 pb-3 flex-wrap">
                     <button
                         type="button"
                         onClick={() => setTab('orders')}
@@ -166,6 +202,17 @@ export default function Backoffice() {
                         }`}
                     >
                         Orders ({orders.length})
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => setTab('products')}
+                        className={`label-mono rounded-full px-4 py-2 text-xs transition-all ${
+                            tab === 'products'
+                                ? 'bg-primary text-primary-foreground font-medium'
+                                : 'glass-btn text-foreground/70 hover:text-foreground'
+                        }`}
+                    >
+                        Products & Shades
                     </button>
                     <button
                         type="button"
@@ -195,6 +242,13 @@ export default function Backoffice() {
                 {tab === 'orders' && (
                     <div className="mt-4">
                         <OrdersTable orders={orders} loading={loading} onStatusChange={handleStatusChange} />
+                    </div>
+                )}
+
+                {/* Tab: Products & Shades */}
+                {tab === 'products' && (
+                    <div className="mt-4">
+                        <ProductManager />
                     </div>
                 )}
 
@@ -315,9 +369,10 @@ export default function Backoffice() {
                                         <tr>
                                             <th className="py-3 px-3">Email</th>
                                             <th className="py-3 px-3">Name</th>
-                                            <th className="py-3 px-3">Role</th>
+                                            <th className="py-3 px-3">Role (Click to Toggle)</th>
                                             <th className="py-3 px-3">Status</th>
                                             <th className="py-3 px-3">Joined Date</th>
+                                            <th className="py-3 px-3 text-right">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-white/5">
@@ -330,18 +385,33 @@ export default function Backoffice() {
                                                         : '—'}
                                                 </td>
                                                 <td className="py-3 px-3">
-                                                    <span
-                                                        className={`inline-block rounded-full px-2.5 py-0.5 text-[10px] uppercase tracking-wider ${
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => handleToggleStaff(u)}
+                                                        title="Click to toggle administrator rights"
+                                                        className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[10px] uppercase tracking-wider transition-colors ${
                                                             u.is_staff
-                                                                ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30'
-                                                                : 'bg-white/10 text-foreground/70'
+                                                                ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30 hover:bg-purple-500/30'
+                                                                : 'bg-white/10 text-foreground/70 hover:bg-white/20'
                                                         }`}
                                                     >
+                                                        <Shield className="h-3 w-3" />
                                                         {u.is_staff ? 'Administrator' : 'Customer'}
-                                                    </span>
+                                                    </button>
                                                 </td>
                                                 <td className="py-3 px-3">
-                                                    <span className="text-emerald-400 font-medium">Active</span>
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => handleToggleActiveUser(u)}
+                                                        className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[10px] uppercase tracking-wider transition-colors ${
+                                                            u.is_active !== false
+                                                                ? 'bg-emerald-500/15 text-emerald-400 hover:bg-emerald-500/25'
+                                                                : 'bg-rose-500/15 text-rose-400 hover:bg-rose-500/25'
+                                                        }`}
+                                                    >
+                                                        {u.is_active !== false ? <UserCheck className="h-3 w-3" /> : <UserX className="h-3 w-3" />}
+                                                        {u.is_active !== false ? 'Active' : 'Suspended'}
+                                                    </button>
                                                 </td>
                                                 <td className="py-3 px-3 text-foreground/50">
                                                     {u.date_joined
@@ -351,6 +421,16 @@ export default function Backoffice() {
                                                               day: 'numeric',
                                                           })
                                                         : '—'}
+                                                </td>
+                                                <td className="py-3 px-3 text-right">
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => handleDeleteUser(u)}
+                                                        className="glass-btn grid h-7 w-7 place-items-center rounded-full text-rose-400/80 hover:text-rose-400 hover:border-rose-500/50"
+                                                        title="Delete user"
+                                                    >
+                                                        <Trash2 className="h-3 w-3" />
+                                                    </button>
                                                 </td>
                                             </tr>
                                         ))}

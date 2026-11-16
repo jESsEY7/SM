@@ -28,6 +28,22 @@ export const authApi = {
         const response = await client.get('/auth/users/');
         return response.data;
     },
+
+    /**
+     * Admin: update a user (role, active status, name)
+     */
+    updateUser: async (id, userData) => {
+        const response = await client.patch(`/auth/users/${id}/`, userData);
+        return response.data;
+    },
+
+    /**
+     * Admin: delete a user
+     */
+    deleteUser: async (id) => {
+        const response = await client.delete(`/auth/users/${id}/`);
+        return response.data;
+    },
 };
 
 export default authApi;
